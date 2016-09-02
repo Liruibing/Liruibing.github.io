@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url" value="jdbc:mysql://localhost:3306/yiju"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="123456"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>yiju/pojo/Landlord.hbm.xml</value>
+				<value>yiju/pojo/Houses.hbm.xml</value>
+				<value>yiju/pojo/Renter.hbm.xml</value>
+				<value>yiju/pojo/Manager.hbm.xml</value>
+				<value>yiju/pojo/Collect.hbm.xml</value></list>
+		</property>
+	</bean>
+	<!-- HibernateTemplate的注入 -->
+	<bean name="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	
+	</bean>
+	<!-- 房东 landlord-->
+	<!-- dao层的依赖注入 -->
+	<bean name="landlordDao" class="yiju.dao.impl.LandlordDaoImpl">
+		  <property name="hibernateTemplate" ref="hibernateTemplate"/>		
+	</bean>
+	<!-- service层的依赖注入 -->
+	<bean name="landlordService" class="yiju.service.impl.LandlordServiceImpl">
+		  <property name="landlordDao" ref="landlordDao"/>		
+	</bean>
+	<!-- action层的依赖注入 -->
+	<bean name="landlordAction" class="yiju.action.LandlordAction">
+		  <property name="landlordService" ref="landlordService"/>		
+	</bean>
+	
+	<!-- 租客renter-->
+	<!-- dao层的依赖注入 -->
+	<bean name="renterDao" class="yiju.dao.impl.RenterDaoImpl">
+		  <property name="hibernateTemplate" ref="hibernateTemplate"/>		
+	</bean>
+	<!-- service层的依赖注入 -->
+	<bean name="renterService" class="yiju.service.impl.RenterServiceImpl">
+		  <property name="renterDao" ref="renterDao"/>		
+	</bean>
+	<!-- action层的依赖注入 -->
+	<bean name="renterAction" class="yiju.action.RenterAction">
+		  <property name="renterService" ref="renterService"/>		
+	</bean>
+	
+	<!-- 房子houses -->
+	<!-- dao层的依赖注入 -->
+	<bean name="housesDao" class="yiju.dao.impl.HousesDaoImpl">
+		  <property name="hibernateTemplate" ref="hibernateTemplate"/>		
+	</bean>
+	<!-- service层的依赖注入 -->
+	<bean name="housesService" class="yiju.service.impl.HousesServiceImpl">
+		  <property name="housesDao" ref="housesDao"/>		
+	</bean>
+	<!-- action层的依赖注入 -->
+	<bean name="housesAction" class="yiju.action.HousesAction">
+		  <property name="housesService" ref="housesService"/>		
+	</bean>
+	
+	<!-- 收藏房源Collect-->
+		<!-- dao层的依赖注入 -->
+	<bean name="collectDao" class="yiju.dao.impl.CollectDaoImpl">
+		  <property name="hibernateTemplate" ref="hibernateTemplate"/>		
+	</bean>
+	<!-- service层的依赖注入 -->
+	<bean name="collectService" class="yiju.service.impl.CollectServiceImpl">
+		  <property name="collectDao" ref="collectDao"/>		
+	</bean>
+	<!-- action层的依赖注入 -->
+	<bean name="collectAction" class="yiju.action.CollectAction">
+		  <property name="collectService" ref="collectService"/>		
+	</bean>
+		
+	</beans>

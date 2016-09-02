@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>免费发布房源</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="top">
+	<div class="wrap clearfix">
+		<h1><a href="landlord.html">易居</a></h1>
+		<form class="release-form" action="">
+			<div class="sear-l release-sear">
+				<select name="" id="">
+					<option value="郑州">郑州</option>
+					<option value="西安">西安</option>
+					<option value="北京">北京</option>
+					<option value="天津">天津</option>
+					<option value="上海">上海</option>
+					<option value="深圳">深圳</option>
+				</select>
+				<input id="skipUrl" class="sear-text" type="text" placeholder="请输入小区名称/区域/厅室">
+			</div>
+			<a onclick="skipUrl();" class="sear-submit">搜房源</a>			
+		</form>
+		<div class="top-login" id="loginSession">
+			
+		</div>
+	</div>
+</div>
+<div class="release-inventory-con wrap">
+	<h2>免费发布房源</h2>
+	<form  method="post" enctype="multipart/form-data" id="chuzuForm">
+		<h3>类别和身份</h3>
+		<p class="no-margin">
+			<span class="title"><b>*</b> 出租方式：</span>
+			<input type="radio" name="style" id="a" value="整套出租" checked="checked" ><label class="checked" name="a">整套出租</label>
+		    <input type="radio" name="style" id="b" value="单间出租"><label name="b">单间出租</label>
+		    <input type="radio" name="style" id="c" value="床位出租"><label name="c">床位出租</label>
+		</p>
+		<p>
+			<span class="title"><b>*</b> 身份：</span>
+			<input type="radio" name="status" id="d" checked="checked" value="个人"><label name="d" class="checked" >个人</label>
+		    <input type="radio" name="status" id="e" value="经纪人"><label name="e">经纪人</label>
+		</p>
+		<h3>基础信息</h3>
+		<p>
+			<span class="title"><b>*</b> 小区名称：</span>
+			<input type="text" id="villageName" placeholder="小区名字" class="text1">
+		</p>
+		<p>
+			<span class="title"><b>*</b> 房屋户型：</span>
+			<input type="text" class="text2" id="shi" style="background:  url(images/release/list_01.png) 0 0 no-repeat;">
+			<input type="text" class="text2" id="ting" style="background:  url(images/release/list_02.png) 0 0 no-repeat;">
+			<input type="text" class="text2" id="wei" style="background:  url(images/release/list_03.png) 0 0 no-repeat;">
+			<input type="text" class="text2" id="area" style="background:  url(images/release/list_04.png) 0 0 no-repeat;">
+		</p>
+		<p>
+			<span class="title"><b>*</b> 楼层：</span>
+			<input type="text" class="text2" id="floor" style="background:  url(images/release/list_05.png) 0 0 no-repeat;">
+			<input type="text" class="text2" id="countfloor" style="background:  url(images/release/list_06.png) 0 0 no-repeat;">
+		</p>
+		<p>
+			<span class="title"><b>*</b> 朝向装修：</span>
+			<select name="" id="direction" class="select1">
+				<option value="南">南</option>
+				<option value="东">东</option>
+				<option value="西">西</option>
+				<option value="北">北</option>
+			</select>
+			<select name="" id="level" class="select2">
+				<option value="精装修">精装修</option>
+				<option value="简装修">简装修</option>
+				<option value="毛培">毛培</option>
+			</select>
+		</p>
+		<p>
+			<span class="title"><b>*</b> 租金：</span>
+			<input type="text" id="price" class="text3" style="background:  url(images/release/list_07.png) 0 0 no-repeat;">
+			<select name="" id="paymethod" class="select3">
+				<option value="押一付三">押一付三</option>
+				<option value="押一付二">押一付二</option>
+				<option value="押一付一">押一付一</option>
+			</select>
+		</p>
+		<h3>详细信息</h3>
+		<p>
+			<span class="title"><b>*</b> 标题：</span>
+			<input type="text" id="tittle" placeholder="8至30个字，不允许特殊字符" class="text4">
+		</p>
+		<p>
+			<span class="title"><b>*</b> 房屋配置：</span>
+			<input type="checkbox" name="configure" id="r" checked="checked" value="床"><label name="r" class="checked2 checkbox" >床</label>
+		    <input type="checkbox" name="configure" id="f" value="衣柜"><label name="f" class="checkbox" >衣柜</label>
+		    <input type="checkbox" name="configure" id="g" value="沙发"><label name="g" class="checkbox" >沙发</label>
+		    <input type="checkbox" name="configure" id="h" value="书桌"><label name="h" class="checkbox" >书桌</label>
+		    <input type="checkbox" name="configure" id="i" value="电视"><label name="i" class="checkbox" >电视</label>
+		    <input type="checkbox" name="configure" id="j" value="冰箱"><label name="j" class="checkbox" >冰箱</label>
+		    <input type="checkbox" name="configure" id="k" value="微波炉"><label name="k" class="checkbox" >微波炉</label>
+		    <input type="checkbox" name="configure" id="l" value="电磁炉"><label name="l" class="checkbox" >电磁炉</label>
+		    <span class="title"></span>
+		    <input type="checkbox" name="configure" id="m" value="洗衣机"><label name="m" class="checkbox" >洗衣机</label>
+		    <input type="checkbox" name="configure" id="n" value="空调"><label name="n" class="checkbox" >空调</label>
+		    <input type="checkbox" name="configure" id="o" value="热水器"><label name="o" class="checkbox" >热水器</label>
+		    <input type="checkbox" name="configure" id="p" value="宽带"><label name="p" class="checkbox" >宽带</label>
+		    <input type="checkbox" name="configure" id="q" value="暖气"><label name="q" class="checkbox" >暖气</label>			
+		</p>
+		<p>
+			<span class="title"><b>*</b> 特色：</span>
+			<input type="text" id="features" placeholder="请输入4个关键词，不同关键词之间用空格隔开" class="text4">
+		</p>
+		<p>
+			<span class="title"><b>*</b> 地址：</span>
+			<input type="text" id="address" placeholder="请正确输入地址" class="text4">
+		</p>
+		<div class="upfilebox">
+			<div id="addbq">
+	            <input type="file" name="file" id="file1" onchange="addFile(this);"/>
+	         </div>   
+	         <label>上传图片</label>
+            <div class="pictures">
+            	
+            </div>
+        </div>
+		<p>
+			<span class="title"></span>
+			<span class="words">只能上传房屋图片，不能包含有文字、数字、网址、名片等，最多上传24张，每张最大10M</span>		
+		</p>
+		<h3>其他信息</h3>
+		<p>
+			<span class="title"><b>*</b> 联系人：</span>
+			<input type="text" id="linkman" placeholder="请填写联系人" class="text1">
+		</p>
+		<p>
+			<span class="title"><b>*</b> 联系电话：</span>
+			<input type="text" id="linkphone" placeholder="请正确填写号码" class="text1">
+		</p>
+		<input type="button" class="release" value="发布" onclick="addHouses();">
+	</form>
+</div>
+<div class="footer">
+	<div class="in-footer wrap">
+		<div class="foot-l">
+			<div class="friend-link">
+				<span>友情链接：</span>
+				<a href="javascript:;">武汉租房</a>
+				<a href="javascript:;">厨房电器品牌</a>
+				<a href="javascript:;">房展汇</a>
+				<a href="javascript:;">36搜房网</a>
+				<a href="javascript:;">无锡二手车</a>
+				<a href="javascript:;">合肥房产网</a>
+				<a href="javascript:;">房产论坛</a>
+				<a href="javascript:;">租房问答</a>
+				<a href="javascript:;">郑州租房</a>
+				<a href="javascript:;">郑州房价</a>
+				<a href="javascript:;">好租</a>
+				<a href="javascript:;">密封胶</a><br>
+				<a href="javascript:;">南山写字楼</a>
+				<a href="javascript:;">罗湖写字楼</a>
+				<a href="javascript:;">上海写字楼出租</a>
+				<a href="javascript:;">广州写字楼出租</a>
+				<a href="javascript:;">北京办公室出租</a>
+				<a href="javascript:;">深圳写字楼出租</a>
+				<a href="javascript:;">房产季</a>
+				<a href="javascript:;">好租</a>
+				<a href="javascript:;">好租</a>
+			</div>
+			<p>北京易居房产经纪有限公司 | 网络经营许可证 京ICP备11024601号-12</p>
+			<p>© Copyright©2010-2016 易居yiju.com版权所有</p>
+		</div>
+		<div class="foot-r"></div>
+	</div>
+</div>
+</body>
+</html>
+<script src="js/jquery-1.12.1.min.js"></script>
+<script src="js/index.js"></script>
+<script src="js/ajaxfileupload.js"></script>
+<script src="js/release-inventory.js"></script>
